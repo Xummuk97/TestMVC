@@ -6,13 +6,9 @@ class NewsController
 {
     public function ActionIndex()
     {
-        echo 'Index<br>';
-        
         $news_list = News::GetNewsList();
         
-        echo '<pre>';
-        print_r($news_list);
-        echo '</pre>';
+        require_once ROOT . '/application/views/news/index.php';
         
         return true;
     }
@@ -21,8 +17,6 @@ class NewsController
     {
         if ($id)
         {
-            echo 'View<br>';
-            
             $news_item = News::GetNewsItemById($id);
             
             echo '<pre>';
