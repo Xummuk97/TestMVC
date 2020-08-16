@@ -1,18 +1,34 @@
 <?php
 
+include_once ROOT . '/application/models/News.php';
 
 class NewsController 
 {
     public function ActionIndex()
     {
-        echo 'Список новостей';
+        echo 'Index<br>';
+        
+        $news_list = News::GetNewsList();
+        
+        echo '<pre>';
+        print_r($news_list);
+        echo '</pre>';
+        
         return true;
     }
     
-    public function ActionView($category, $id)
+    public function ActionView($id)
     {
-        echo "Category: $category<br>";
-        echo "Id: $id<br>";
+        if ($id)
+        {
+            echo 'View<br>';
+            
+            $news_item = News::GetNewsItemById($id);
+            
+            echo '<pre>';
+            print_r($news_item);
+            echo '</pre>';
+        }
         return true;
     }
 }
