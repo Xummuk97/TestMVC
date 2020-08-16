@@ -39,18 +39,18 @@ class Router
             # Сравниванием $uri_pattern и $uri
             if (preg_match("~$uri_pattern~", $uri))
             {
-                # Определить какой контроллер
-                # и экшен обрабатывают запрос
-                $segments = explode('/', $path);
+                # Получаем внутренний маршрут из внешнего согласно правилу
+                $internal_route = preg_replace("~$uri_pattern~", $path, $uri);
                 
-                # Получаем имя контроллера
+                # Определить контроллер, экшен и параметры
+                $segments = explode('/', $internal_route);
+                
                 $controller_name = array_shift($segments).'Controller';
-                
-                # Получаем название экшена
-                $action_name = 'Action'.array_shift($segments);
+                $action_name = 'Action' . array_shift($segments);
+                $parameters = $segments;
                 
                 # Подключить файл класса-контроллера
-                $controller_file = ROOT.'/application/controllers/' .
+                $controller_file = ROOT . '/application/controllers/' .
                         $controller_name . '.php';
                 
                 if (file_exists($controller_file))
@@ -58,9 +58,11 @@ class Router
                     include_once $controller_file;
                 }
                 
-                # Создать объект, вызвать метод (т.е. экшен)
+                # Создать объект, вызвать метод (т.е. action)
                 $controller_object = new $controller_name;
-                $result = $controller_object->$action_name();
+                
+                $result = call_user_func_array([ $controller_object, $action_name ], 
+                        $parameters);
                 
                 if ($result != null)
                 {
