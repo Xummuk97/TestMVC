@@ -1,16 +1,18 @@
 <?php
 
-# Front Controller
+spl_autoload_register(function($class)
+{
+    $path = str_replace('\\', '/', $class . '.php');
+    
+    if (file_exists($path))
+    {
+        require_once $path;
+    }
+});
 
-# Отображение ошибок
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+application\libs\Dev::displayErrors();
 
-# Подключение файлов
-define('ROOT', dirname(__FILE__));
-require_once ROOT.'/application/components/Router.php';
-require_once ROOT.'/application/components/Db.php';
+session_start();
 
-# Вызов Router
-$router = new Router();
-$router->Run();
+$router = new application\core\Router;
+$router->run();

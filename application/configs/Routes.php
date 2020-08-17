@@ -1,7 +1,26 @@
 <?php
 
-return [
-    // 'URI' => 'Controller/Method'
-    'news/([0-9]+)' => 'News/View/$1',
-    'news' => 'news/index'
-];
+namespace application\configs;
+
+class Routes
+{
+    public static function getRoutes()
+    {
+        return [
+            '' => [
+                'controller' => 'main',
+                'action' => 'index'
+            ],
+            
+            'account/login' => [
+                'controller' => 'account',
+                'action' => 'login'
+            ],
+
+            'news/show' => [
+                'controller' => 'news',
+                'action' => 'show'
+            ]
+        ];
+    }
+}
