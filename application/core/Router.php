@@ -3,6 +3,7 @@
 namespace application\core;
 
 use application\configs\Routes;
+use application\core\View;
 
 class Router
 {

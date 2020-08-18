@@ -8,6 +8,7 @@ class AccountController extends Controller
 {
     public function loginAction()
     {
-        echo 'Страница входа';
+        $vars = [ 'name' => 'Andrey', 'age' => 20 ];
+        $this->view->render('Главная страница', $vars);
     }
 }
