@@ -8,7 +8,7 @@ class Db
     {
         return [
             'host' => 'localhost',
-            'dbname' => 'test',
+            'dbname' => 'tasks',
             'user' => 'root',
             'pass' => ''
         ];

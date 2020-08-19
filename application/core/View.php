@@ -15,8 +15,9 @@ class View
     }
     
     public function render($title, $vars = [])
-    {
+    {   
         extract($vars);
+        $IS_ADMIN = isset($_SESSION['admin']);
         
         $view_path = 'application/views/' . $this->path . '.php';
         
@@ -25,7 +26,6 @@ class View
             ob_start();
             require $view_path;
             $content = ob_get_clean();
-            
             $layout_path = 'application/views/layouts/' . $this->layout . '.php';
             
             if (file_exists($layout_path))

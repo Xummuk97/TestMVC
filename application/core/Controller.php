@@ -25,9 +25,5 @@ abstract class Controller
         {
             return new $model_path;
         }
-        else
-        {
-            echo $model_path;
-        }
     }
 }

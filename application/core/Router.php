@@ -31,7 +31,8 @@ class Router
         {
             if (preg_match($route, $uri, $matches))
             {
-                \application\libs\Dev::debug($matches);
+                unset($matches[0]);
+                $params['matches'] = $matches;
                 $this->params = $params;
                 return true;
             }
@@ -55,7 +56,9 @@ class Router
                 if (method_exists($path, $action))
                 {
                     $controller = new $path($this->params);
-                    $controller->$action();
+
+                    call_user_func_array([ $controller, $action ], 
+                        $this->params['matches']);
                 }
                 else
                 {
