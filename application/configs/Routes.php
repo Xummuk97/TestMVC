@@ -8,7 +8,7 @@ class Routes
     {
         return [
             '' => [
-                'controller' => 'main',
+                'controller' => 'account',
                 'action' => 'index'
             ],
             
@@ -16,11 +16,6 @@ class Routes
                 'controller' => 'account',
                 'action' => 'login'
             ],
-
-            'news/show' => [
-                'controller' => 'news',
-                'action' => 'show'
-            ]
         ];
     }
 }

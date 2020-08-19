@@ -31,6 +31,7 @@ class Router
         {
             if (preg_match($route, $uri, $matches))
             {
+                \application\libs\Dev::debug($matches);
                 $this->params = $params;
                 return true;
             }
