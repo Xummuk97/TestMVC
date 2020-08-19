@@ -2,9 +2,6 @@
 
 namespace application\core;
 
-use application\configs\Routes;
-use application\core\View;
-
 class Router
 {
     protected $routes = [];
@@ -12,9 +9,9 @@ class Router
     
     public function __construct() 
     {
-        $arr = Routes::getRoutes();
+        $routes_date = \application\configs\Routes::getRoutes();
         
-        foreach ($arr as $key => $value) 
+        foreach ($routes_date as $key => $value) 
         {
             $this->add($key, $value);
         }
