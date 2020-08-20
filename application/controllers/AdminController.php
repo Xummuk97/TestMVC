@@ -26,7 +26,7 @@ class AdminController extends Controller
         
         $flags = $this->loginPostProcessing();
         
-        if ($flags == 0)
+        if ($flags == -1)
         {
             $_SESSION['admin'] = 1;
             $this->view->redirect('/admin');
@@ -36,7 +36,7 @@ class AdminController extends Controller
             'flags' => $flags,
         ];
         
-        $this->view->render('Вход');
+        $this->view->render('Вход', $vars);
     }
     
     private function loginPostProcessing()
@@ -52,7 +52,12 @@ class AdminController extends Controller
             
             if (!Validate::findPostVariable('password'))
             {
-                $flags |= AdminController::ERROR_NO_LOGIN;
+                $flags |= AdminController::ERROR_NO_PASSWORD;
+            }
+            
+            if ($flags != 0)
+            {
+                return $flags;
             }
             
             $name = Validate::normalString($_POST['login']);
@@ -63,10 +68,15 @@ class AdminController extends Controller
                 $flags |= AdminController::ERROR_INCORRECT_DATA;
             }
             
-            return $flags;
+            if ($flags != 0)
+            {
+                return $flags;
+            }
+            
+            return -1;
         }
         
-        return -1;
+        return 0;
     }
     
     public function indexAction()

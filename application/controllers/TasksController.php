@@ -21,7 +21,9 @@ class TasksController extends Controller
     
     public function indexAction($page = 1, $sort = 0)
     {
-        $flags = $this->indexPostProcessing();
+        $_SESSION['admin'] = null;
+        
+        $flags = $this->indexPostProcessing($page, $sort);
         
         $art = ($page * TasksController::TASKS_LIMIT) - TasksController::TASKS_LIMIT;
         
@@ -41,7 +43,7 @@ class TasksController extends Controller
         $this->view->render('Список задач', $vars);
     }
     
-    private function indexPostProcessing()
+    private function indexPostProcessing($page, $sort)
     {
         if (!empty($_POST))
         {
@@ -80,7 +82,7 @@ class TasksController extends Controller
             
             $this->model->addTask($name, $email, $text);
             
-            $this->view->redirect('/1/0');
+            $this->view->redirect("$page/$sort");
             return TasksController::SUCCESS_ADD;
         }
         
