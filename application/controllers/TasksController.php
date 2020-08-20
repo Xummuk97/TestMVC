@@ -19,7 +19,7 @@ class TasksController extends Controller
     
     const SUCCESS_ADD = (TasksController::BASE << 1);
     
-    public function indexAction($page = 1, $sort = 0)
+    public function indexAction($page = 1, $sort = 0, $desc = 0)
     {
         $_SESSION['admin'] = null;
         
@@ -27,7 +27,7 @@ class TasksController extends Controller
         
         $art = ($page * TasksController::TASKS_LIMIT) - TasksController::TASKS_LIMIT;
         
-        $tasks = $this->model->getTasks($art, TasksController::TASKS_LIMIT, $sort);
+        $tasks = $this->model->getTasks($art, TasksController::TASKS_LIMIT, $sort, $desc);
         
         $total = $this->model->getTasksCount();
         $count_pages = ceil($total / TasksController::TASKS_LIMIT);
@@ -37,7 +37,8 @@ class TasksController extends Controller
             'count_pages' => $count_pages,
             'flags' => $flags,
             'page' => $page,
-            'sort' => $sort
+            'sort' => $sort,
+            'desc' => $desc
         ];
         
         $this->view->render('Список задач', $vars);

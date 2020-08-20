@@ -1,7 +1,7 @@
 <ul class="nav justify-content-center">
     <li class="nav-item">
         <a class="nav-link" href="/admin">Назад</a>
-        <a class="nav-link" href="/">На главную</a>
+        <a class="nav-link" href="/">Выход</a>
     </li>
 </ul>
 

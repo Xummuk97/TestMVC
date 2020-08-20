@@ -7,7 +7,7 @@ class Routes
     public static function getRoutes()
     {
         return [
-            '([0-9]+)?/?([0-9]+)?' => [
+            '([0-9]+)?/?([0-9]+)?/?([0-9]+)?' => [
                 'controller' => 'tasks',
                 'action' => 'index'
             ],

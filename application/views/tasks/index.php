@@ -47,17 +47,32 @@
     <br>
     <h2>Список задач</h2>
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Сортировка задач
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="<?php echo '/' . $page . '/0' ; ?>">По имени пользователя</a>
-    <a class="dropdown-item" href="<?php echo '/' . $page . '/1' ; ?>">По e-mail</a>
-    <a class="dropdown-item" href="<?php echo '/' . $page . '/2' ; ?>">По статусу выполнения</a>
-  </div>
-</div>
-<br>
+    <div class="input-group">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Сортировка задач
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/0/' . $desc; ?>">Без сортировки</a>
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/1/' . $desc; ?>">По имени пользователя</a>
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/2/' . $desc; ?>">По e-mail</a>
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/3/' . $desc; ?>">По статусу выполнения</a>
+            </div>
+          </div>
+        
+            &nbsp;
+            
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Порядок вывода задач
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/' . $sort . '/0'; ?>">По возрастанию</a>
+              <a class="dropdown-item" href="<?php echo '/' . $page . '/' . $sort . '/1'; ?>">По убыванию</a>
+            </div>
+          </div>
+          <br>
+    </div>
     
     <?php if ($count_pages == 0) : ?>
     <p class="text-info"><strong>Задач не найдено</strong></p>
@@ -74,7 +89,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
           <?php for ($i = 1; $i <= $count_pages; $i++) : ?>
-            <li class="page-item"><a class="page-link" href="<?php echo '/' . $i . '/' . $sort; ?>"><?php echo $i; ?></a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo '/' . $i . $sort . $desc; ?>"><?php echo $i; ?></a></li>
           <?php endfor; ?>
         </ul>
       </nav>
