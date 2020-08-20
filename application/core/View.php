@@ -17,7 +17,6 @@ class View
     public function render($title, $vars = [])
     {   
         extract($vars);
-        $IS_ADMIN = isset($_SESSION['admin']);
         
         $view_path = 'application/views/' . $this->path . '.php';
         
