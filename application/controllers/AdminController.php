@@ -123,8 +123,8 @@ class AdminController extends Controller
     {
         $this->redirectToLogin();
         
-        $flags = $this->editPostProcessing($id);
         $task = $this->model->getTask($id);
+        $flags = $this->editPostProcessing($task, $id);
         
         $vars = [
             'task' => $task,
@@ -134,7 +134,7 @@ class AdminController extends Controller
         $this->view->render('Редактировать запись', $vars);
     }
     
-    private function editPostProcessing($id)
+    private function editPostProcessing($task, $id)
     {
         if (!empty($_POST))
         {
@@ -177,8 +177,14 @@ class AdminController extends Controller
             $email = Validate::normalString($_POST['email']);
             $text = Validate::normalString($_POST['text']);
             $done = Validate::normalString($_POST['done']);
+            $edit = $task['edit'];
             
-            $this->model->updateTask($id, $name, $email, $text, $done);
+            if ($edit == 0 && $text != $task['text'])
+            {
+                $edit = 1;
+            }
+            
+            $this->model->updateTask($id, $name, $email, $text, $done, $edit);
             $this->view->redirect('/admin');
         }
         

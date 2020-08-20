@@ -31,7 +31,7 @@ class Admin extends Model
         $this->db->query("DELETE FROM tasks WHERE id = :id", $params);
     }
     
-    public function updateTask($id, $name, $email, $text, $done)
+    public function updateTask($id, $name, $email, $text, $done, $edit)
     {
         $params = [
             'id' => $id,
@@ -39,9 +39,10 @@ class Admin extends Model
             'email' => $email,
             'text' => $text,
             'done' => $done,
+            'edit' => $edit,
         ];
         
-        $this->db->query('UPDATE tasks SET name = :name, email = :email, text = :text, done = :done WHERE id = :id', 
+        $this->db->query('UPDATE tasks SET name = :name, email = :email, text = :text, done = :done, edit = :edit WHERE id = :id', 
                 $params);
     }
 }

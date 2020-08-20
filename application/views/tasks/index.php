@@ -82,7 +82,7 @@
         <h4>Задача # <strong><?php echo $task['id'] . ' '; ?><span class="badge badge-secondary"><?php echo $task['done'] ? 'Выполнена' : 'Не выполнена'; ?></span></strong></h4>
         <p>Создатель: <strong><?php echo $task['name']; ?></strong></p>
         <p>E-Mail: <strong><?php echo $task['email']; ?></strong></p>
-        <p>Текст: <strong><?php echo $task['text']; ?></strong></p>
+        <p>Текст: <strong><?php echo $task['text']; ?></strong>(<?php echo $task['edit'] ? 'Редактирован админом' : 'Не редактирован админом'; ?>)</p>
         <hr>
     <?php endforeach; ?>
         

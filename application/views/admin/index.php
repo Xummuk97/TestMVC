@@ -13,6 +13,7 @@
         <th scope="col">E-Mail</th>
         <th scope="col">Текст</th>
         <th scope="col">Выполнено</th>
+        <th scope="col">Редактирован админом</th>
         <th scope="col">Действие</th>
       </tr>
     </thead>
@@ -24,6 +25,7 @@
             <td><?php echo $task['email']; ?></td>
             <td><?php echo $task['text']; ?></td>
             <td><?php echo $task['done'] ? 'Да' : 'Нет'; ?></td>
+            <td><?php echo $task['edit'] ? 'Да' : 'Нет'; ?></td>
             <td>
                 <form action="/admin" method="post">
                     <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
