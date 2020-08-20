@@ -82,7 +82,7 @@ class TasksController extends Controller
             
             $this->model->addTask($name, $email, $text);
             
-            $this->view->redirect("$page/$sort");
+            unset($_POST);
             return TasksController::SUCCESS_ADD;
         }
         
