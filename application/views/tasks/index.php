@@ -89,7 +89,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
           <?php for ($i = 1; $i <= $count_pages; $i++) : ?>
-            <li class="page-item"><a class="page-link" href="<?php echo '/' . $i . $sort . $desc; ?>"><?php echo $i; ?></a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo '/' . $i . '/' . $sort . '/' . $desc; ?>"><?php echo $i; ?></a></li>
           <?php endfor; ?>
         </ul>
       </nav>
